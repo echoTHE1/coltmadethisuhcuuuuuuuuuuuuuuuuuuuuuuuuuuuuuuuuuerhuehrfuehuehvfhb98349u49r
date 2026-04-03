@@ -309,23 +309,25 @@ class NeonplayApp {
     }
 
     launchExternalGame(gameUrl, gameName) {
-        const modalContent = document.getElementById('gameContainer');
+        const container = document.getElementById('gameContainer');
         const modal = document.getElementById('gameModal');
-        const modalTitle = document.getElementById('gameTitle');
 
-        modalTitle.textContent = gameName;
-        modalContent.innerHTML = `
-            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.8); border-radius: 10px; overflow: hidden;">
-                <iframe 
-                    src="${gameUrl}" 
-                    style="width: 100%; height: 100%; border: none; border-radius: 10px;"
-                    allow="fullscreen; accelerometer; gyroscope; microphone"
-                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
-                </iframe>
+        container.innerHTML = `
+            <div class="external-game-wrapper">
+                <div class="game-header">
+                    <h2>${gameName}</h2>
+                </div>
+                <div class="external-game-frame">
+                    <iframe 
+                        src="${gameUrl}" 
+                        allow="fullscreen; accelerometer; gyroscope; microphone; camera"
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals">
+                    </iframe>
+                </div>
             </div>
         `;
-        modal.style.display = 'flex';
-        this.addParticles();
+        modal.classList.add('active');
+        this.particles.addParticles(window.innerWidth / 2, window.innerHeight / 2, 10);
     }
 
     setupScrollAnimations() {
