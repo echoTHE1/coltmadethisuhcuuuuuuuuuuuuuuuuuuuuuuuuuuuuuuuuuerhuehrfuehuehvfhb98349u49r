@@ -321,25 +321,45 @@ class NeonplayApp {
     }
 
     launchExternalGame(gameUrl, gameName) {
-        const container = document.getElementById('gameContainer');
-        const modal = document.getElementById('gameModal');
+        try {
+            NeonplayCompat.log(`Launching external game: ${gameName} from ${gameUrl}`);
+            
+            const container = document.getElementById('gameContainer');
+            const modal = document.getElementById('gameModal');
 
-        container.innerHTML = `
-            <div class="external-game-wrapper">
-                <div class="game-header">
-                    <h2>${gameName}</h2>
+            if (!container || !modal) {
+                NeonplayCompat.log('ERROR: Modal or container not found!');
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="external-game-wrapper">
+                    <div class="game-header">
+                        <h3>🎮 ${gameName}</h3>
+                    </div>
+                    <div class="external-game-frame">
+                        <iframe 
+                            src="${gameUrl}" 
+                            allow="fullscreen; accelerometer; gyroscope; microphone; camera"
+                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-presentation"
+                            style="background: white;">
+                        </iframe>
+                    </div>
                 </div>
-                <div class="external-game-frame">
-                    <iframe 
-                        src="${gameUrl}" 
-                        allow="fullscreen; accelerometer; gyroscope; microphone; camera"
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals">
-                    </iframe>
-                </div>
-            </div>
-        `;
-        modal.classList.add('active');
-        this.particles.addParticles(window.innerWidth / 2, window.innerHeight / 2, 10);
+            `;
+            
+            modal.classList.add('active');
+            modal.style.display = 'flex';
+            
+            // Add particle effects
+            if (this.particles) {
+                this.particles.addParticles(window.innerWidth / 2, window.innerHeight / 2, 10);
+            }
+            
+            NeonplayCompat.log('Game modal activated successfully');
+        } catch (error) {
+            NeonplayCompat.log(`ERROR launching game: ${error.message}`);
+        }
     }
 
     setupScrollAnimations() {
@@ -389,39 +409,67 @@ class NeonplayApp {
     }
 
     openGame(gameName) {
-        const modal = document.getElementById('gameModal');
-        const container = document.getElementById('gameContainer');
-        
-        // Create game instance based on name
-        let gameContent = '';
-        
-        switch(gameName) {
-            case 'space-dodge':
-                gameContent = this.createSpaceDodgeGame();
-                break;
-            case 'clicker':
-                gameContent = this.createClickerGame();
-                break;
-            case 'reaction':
-                gameContent = this.createReactionGame();
-                break;
-            case 'memory':
-                gameContent = this.createMemoryGame();
-                break;
-        }
+        try {
+            NeonplayCompat.log(`Opening local game: ${gameName}`);
+            
+            const modal = document.getElementById('gameModal');
+            const container = document.getElementById('gameContainer');
+            
+            if (!modal || !container) {
+                NeonplayCompat.log('ERROR: Modal or container not found!');
+                return;
+            }
+            
+            // Create game instance based on name
+            let gameContent = '';
+            
+            switch(gameName) {
+                case 'space-dodge':
+                    gameContent = this.createSpaceDodgeGame();
+                    break;
+                case 'clicker':
+                    gameContent = this.createClickerGame();
+                    break;
+                case 'reaction':
+                    gameContent = this.createReactionGame();
+                    break;
+                case 'memory':
+                    gameContent = this.createMemoryGame();
+                    break;
+                default:
+                    NeonplayCompat.log(`Unknown game: ${gameName}`);
+                    return;
+            }
 
-        container.innerHTML = gameContent;
-        modal.classList.add('active');
-        
-        // Initialize game
-        this.initializeGame(gameName, container);
+            container.innerHTML = gameContent;
+            modal.classList.add('active');
+            modal.style.display = 'flex';
+            
+            // Initialize game
+            this.initializeGame(gameName, container);
+            
+            // Add particle effects
+            if (this.particles) {
+                this.particles.addParticles(window.innerWidth / 2, window.innerHeight / 2, 10);
+            }
+            
+            NeonplayCompat.log('Game opened successfully');
+        } catch (error) {
+            NeonplayCompat.log(`ERROR opening game: ${error.message}`);
+        }
     }
 
     closeGame() {
-        const modal = document.getElementById('gameModal');
-        modal.classList.remove('active');
-        document.getElementById('gameContainer').innerHTML = '';
-        this.currentGame = null;
+        try {
+            const modal = document.getElementById('gameModal');
+            modal.classList.remove('active');
+            modal.style.display = 'none';
+            document.getElementById('gameContainer').innerHTML = '';
+            this.currentGame = null;
+            NeonplayCompat.log('Game closed');
+        } catch (error) {
+            NeonplayCompat.log(`ERROR closing game: ${error.message}`);
+        }
     }
 
     createSpaceDodgeGame() {

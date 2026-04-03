@@ -895,6 +895,7 @@ section {
     flex: 1;
     overflow: hidden;
     position: relative;
+    background: #ffffff;
 }
 
 .external-game-frame iframe {
@@ -902,6 +903,7 @@ section {
     height: 100%;
     border: none;
     display: block;
+    background: #ffffff;
 }
 
 /* ============================================
