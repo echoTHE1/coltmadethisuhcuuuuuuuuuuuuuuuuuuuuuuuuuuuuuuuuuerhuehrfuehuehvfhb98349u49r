@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeonPlay - Futuristic Gaming Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">NEON</span><span class="logo-accent">PLAY</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">HOME</a></li>
+                <li><a href="#games" class="nav-link">GAMES</a></li>
+                <li><a href="#about" class="nav-link">ABOUT</a></li>
+            </ul>
+            <div class="nav-icons">
+                <button class="sound-toggle" id="soundToggle" title="Toggle Sound">🔊</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <canvas id="particleCanvas"></canvas>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-letter">N</span>
+                <span class="title-letter">E</span>
+                <span class="title-letter">O</span>
+                <span class="title-letter">N</span>
+                <span class="title-letter">P</span>
+                <span class="title-letter">L</span>
+                <span class="title-letter">A</span>
+                <span class="title-letter">Y</span>
+            </h1>
+            <p class="hero-subtitle">Enter the Future of Gaming</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" id="startGamingBtn">
+                    <span class="btn-text">START GAMING</span>
+                    <span class="btn-glow"></span>
+                </button>
+                <button class="btn btn-secondary" id="learnMoreBtn">
+                    <span class="btn-text">LEARN MORE</span>
+                    <span class="btn-glow"></span>
+                </button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span class="scroll-text">SCROLL</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="games-section">
+        <div class="section-header">
+            <h2 class="section-title">GAME ARCADE</h2>
+            <div class="title-underline"></div>
+            <p class="games-subtitle">100+ Games Available</p>
+        </div>
+
+        <!-- Featured Games Tab -->
+        <div class="games-tabs">
+            <button class="tab-btn active" data-tab="featured">⭐ FEATURED</button>
+            <button class="tab-btn" data-tab="popular">🔥 POPULAR</button>
+            <button class="tab-btn" data-tab="action">💥 ACTION</button>
+            <button class="tab-btn" data-tab="puzzle">🧩 PUZZLE</button>
+            <button class="tab-btn" data-tab="idle">⏱️ IDLE</button>
+        </div>
+
+        <!-- Featured Games -->
+        <div class="games-grid" id="featured-games">
+            <!-- NEONPLAY Originals -->
+            <div class="game-card local-game" data-game="space-dodge" data-tab="featured">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🚀</div>
+                        <h3 class="game-title">SPACE DODGE</h3>
+                        <p class="game-description">Dodge asteroids • Local Game</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card local-game" data-game="clicker" data-tab="idle">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">⚡</div>
+                        <h3 class="game-title">ENERGY CLICKER</h3>
+                        <p class="game-description">Click & upgrade • Local Game</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card local-game" data-game="reaction" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">⚙️</div>
+                        <h3 class="game-title">REACTION RUSH</h3>
+                        <p class="game-description">Test reflexes • Local Game</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card local-game" data-game="memory" data-tab="puzzle">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🧠</div>
+                        <h3 class="game-title">MEMORY MATRIX</h3>
+                        <p class="game-description">Pattern memory • Local Game</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <!-- External Games - Featured -->
+            <div class="game-card external-game" data-game="cookie-clicker" data-url="https://monkeygg2.github.io/games/cookie-clicker/" data-tab="popular">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🍪</div>
+                        <h3 class="game-title">COOKIE CLICKER</h3>
+                        <p class="game-description">Click to bake cookies • Idle</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="2048" data-url="https://monkeygg2.github.io/games/2048/" data-tab="puzzle">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🎲</div>
+                        <h3 class="game-title">2048</h3>
+                        <p class="game-description">Merge tiles • Puzzle</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="flappy-bird" data-url="https://monkeygg2.github.io/games/flappy-bird/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🐦</div>
+                        <h3 class="game-title">FLAPPY BIRD</h3>
+                        <p class="game-description">Tap to fly • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="chrome-dino" data-url="https://monkeygg2.github.io/games/chrome-dino/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🦖</div>
+                        <h3 class="game-title">CHROME DINO</h3>
+                        <p class="game-description">Jump & dodge • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="subway-surfers" data-url="https://monkeygg2.github.io/games/subway-surfers/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🚇</div>
+                        <h3 class="game-title">SUBWAY SURFERS</h3>
+                        <p class="game-description">Run & dodge • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="geometry-dash" data-url="https://monkeygg2.github.io/games/geometry-dash-lite/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🎵</div>
+                        <h3 class="game-title">GEOMETRY DASH</h3>
+                        <p class="game-description">Rhythm platformer • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="slope" data-url="https://monkeygg2.github.io/games/slope/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">⛷️</div>
+                        <h3 class="game-title">SLOPE</h3>
+                        <p class="game-description">Roll down • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="drift-boss" data-url="https://monkeygg2.github.io/games/drift-boss/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🏎️</div>
+                        <h3 class="game-title">DRIFT BOSS</h3>
+                        <p class="game-description">Street racing • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="fireboy-watergirl" data-url="https://monkeygg2.github.io/games/fireboy-and-watergirl/" data-tab="puzzle">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🔥💧</div>
+                        <h3 class="game-title">FIREBOY & WATERGIRL</h3>
+                        <p class="game-description">Puzzle platformer • Puzzle</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="run-3" data-url="https://monkeygg2.github.io/games/run-3/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🏃</div>
+                        <h3 class="game-title">RUN 3</h3>
+                        <p class="game-description">Endless runner • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="temple-run" data-url="https://monkeygg2.github.io/games/temple-run-2/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🏛️</div>
+                        <h3 class="game-title">TEMPLE RUN 2</h3>
+                        <p class="game-description">Adventure runner • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="doodle-jump" data-url="https://monkeygg2.github.io/games/doodle-jump/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">📝</div>
+                        <h3 class="game-title">DOODLE JUMP</h3>
+                        <p class="game-description">Jump platformer • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="cut-the-rope" data-url="https://monkeygg2.github.io/games/cut-the-rope/" data-tab="puzzle">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">✂️</div>
+                        <h3 class="game-title">CUT THE ROPE</h3>
+                        <p class="game-description">Physics puzzle • Puzzle</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="basketball-stars" data-url="https://monkeygg2.github.io/games/basketball-stars/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🏀</div>
+                        <h3 class="game-title">BASKETBALL STARS</h3>
+                        <p class="game-description">Sports action • Sports</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="retro-bowl" data-url="https://monkeygg2.github.io/games/retro-bowl/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🏈</div>
+                        <h3 class="game-title">RETRO BOWL</h3>
+                        <p class="game-description">Football simulator • Sports</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="clicker-heroes" data-url="https://monkeygg2.github.io/games/clicker-heroes/" data-tab="idle">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">⚔️</div>
+                        <h3 class="game-title">CLICKER HEROES</h3>
+                        <p class="game-description">Idle RPG • Idle</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="1v1-lol" data-url="https://monkeygg2.github.io/games/1v1-lol/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🎮</div>
+                        <h3 class="game-title">1v1.LOL</h3>
+                        <p class="game-description">Battle royale • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="friday-night-funkin" data-url="https://monkeygg2.github.io/games/friday-night-funkin/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🎤</div>
+                        <h3 class="game-title">FRIDAY NIGHT FUNKIN</h3>
+                        <p class="game-description">Rhythm battle • Music</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="awesome-tanks" data-url="https://monkeygg2.github.io/games/awesome-tanks/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🎯</div>
+                        <h3 class="game-title">AWESOME TANKS</h3>
+                        <p class="game-description">Tank combat • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+
+            <div class="game-card external-game" data-game="fnaf-2" data-url="https://vocalnutria9174.github.io/fnaf-2_html5/" data-tab="action">
+                <div class="game-card-inner">
+                    <div class="game-card-front">
+                        <div class="game-icon">🤖</div>
+                        <h3 class="game-title">FNAF 2</h3>
+                        <p class="game-description">Survival horror • Action</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <button class="play-btn">PLAY</button>
+            </div>
+        </div>
+
+        <!-- View All Button -->
+        <div class="view-all-container">
+            <button class="view-all-btn" id="viewAllBtn">VIEW ALL 100+ GAMES ➜</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="about-content">
+                <h2 class="section-title">ABOUT NEONPLAY</h2>
+                <div class="title-underline about-underline"></div>
+                <p class="about-text">
+                    Welcome to NeonPlay, a cutting-edge gaming platform designed for the future. 
+                    Our collection of arcade-style mini-games combines addictive gameplay with stunning 
+                    neon visuals and smooth animations. Whether you're looking for a quick gaming session 
+                    or competitive leaderboard challenges, NeonPlay delivers an unforgettable experience.
+                </p>
+                <div class="about-features">
+                    <div class="feature">
+                        <div class="feature-icon">✨</div>
+                        <h3>Stunning Visuals</h3>
+                        <p>Neon-infused graphics with smooth animations</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast & Responsive</h3>
+                        <p>Optimized for instant gameplay on all devices</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎮</div>
+                        <h3>Addictive Games</h3>
+                        <p>Engaging mini-games designed for endless fun</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Modal -->
+    <div class="game-modal" id="gameModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-game-container" id="gameContainer">
+                <!-- Game content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">INITIALIZING NEONPLAY</p>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="bgMusic" loop volume="0.3">
+        <source src="data:audio/wav;base64,UklGRiYAAABXQVZFZm10IBAAAAABAAEAQB8AAAB9AAACABAAZGF0YQIAAAAAAA==" type="audio/wav">
+    </audio>
+
+    <!-- Performance & Compatibility Script -->
+    <script>
+        // Ensure site works on GitHub Pages and avoids blocking
+        if (typeof window !== 'undefined') {
+            window.neonplayConfig = {
+                version: '1.0',
+                deployed: true,
+                ghPages: true
+            };
+        }
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

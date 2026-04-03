@@ -1,0 +1,32 @@
+# GitHub Pages Configuration
+# Ensures NEONPLAY website works perfectly on GitHub Pages
+
+# Build settings
+markdown: kramdown
+remote_theme: null
+plugins: []
+
+# Site settings
+title: NEONPLAY - Futuristic Gaming Hub
+description: Advanced browser-based gaming website with neon aesthetic and 4 playable mini-games
+url: "https://github.com"
+baseurl: ""
+
+# Security & Performance
+exclude:
+  - .gitignore
+  - README.md
+  - DEPLOYMENT.md
+  - FEATURES.md
+  - DEVELOPER.md
+  - QUICK-START.md
+  - node_modules
+  - .git
+  - .github
+
+# Ensure static files are served correctly
+include:
+  - .htaccess
+
+# Disable jekyll processing for our static site
+process_content_with_liquid: false
