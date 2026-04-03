@@ -227,14 +227,6 @@ class NeonplayApp {
         // Game tabs - for filtering by category
         this.setupGameTabs();
 
-        // View All Games button
-        const viewAllBtn = document.getElementById('viewAllBtn');
-        if (viewAllBtn) {
-            viewAllBtn.addEventListener('click', () => {
-                alert('View All 100+ Games coming soon!');
-            });
-        }
-
         // Modal close
         document.getElementById('modalClose').addEventListener('click', () => {
             this.closeGame();
