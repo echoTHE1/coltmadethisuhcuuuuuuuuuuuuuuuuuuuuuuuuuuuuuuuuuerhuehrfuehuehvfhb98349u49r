@@ -221,11 +221,13 @@ class NeonplayApp {
             });
         }
 
-        // Game cards - handle both local and external games
-        this.setupGameCards();
-
-        // Game tabs - for filtering by category
+        // Setup game tabs first
         this.setupGameTabs();
+
+        // Setup game cards after a small delay to ensure DOM is ready
+        setTimeout(() => {
+            this.setupGameCards();
+        }, 100);
 
         // Modal close
         document.getElementById('modalClose').addEventListener('click', () => {
@@ -253,17 +255,24 @@ class NeonplayApp {
     }
 
     setupGameCards() {
-        document.querySelectorAll('.game-card').forEach(card => {
+        const cards = document.querySelectorAll('.game-card');
+        NeonplayCompat.log(`Setting up ${cards.length} game cards`);
+        
+        cards.forEach(card => {
             const playBtn = card.querySelector('.play-btn');
+            if (!playBtn) return;
+            
             playBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 
                 // Check if it's a local game or external game
                 const isExternal = card.classList.contains('external-game');
                 
                 if (isExternal) {
                     const gameUrl = card.dataset.url;
-                    this.launchExternalGame(gameUrl, card.querySelector('.game-title').textContent);
+                    const gameTitle = card.querySelector('.game-title').textContent;
+                    this.launchExternalGame(gameUrl, gameTitle);
                 } else {
                     const gameName = card.dataset.game;
                     this.openGame(gameName);
@@ -275,11 +284,15 @@ class NeonplayApp {
     setupGameTabs() {
         const tabBtns = document.querySelectorAll('.tab-btn');
         tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
                 const tabName = btn.dataset.tab;
                 this.filterGamesByTab(tabName);
             });
         });
+
+        // Initialize to show all action games by default
+        this.filterGamesByTab('action');
     }
 
     filterGamesByTab(tabName) {
@@ -291,13 +304,20 @@ class NeonplayApp {
 
         // Show/hide game cards based on tab
         const gameCards = document.querySelectorAll('.game-card');
+        let visibleCount = 0;
         gameCards.forEach(card => {
             if (card.dataset.tab === tabName) {
-                card.style.display = '';
+                card.style.display = 'block';
+                card.style.opacity = '1';
+                card.style.pointerEvents = 'auto';
+                visibleCount++;
             } else {
                 card.style.display = 'none';
+                card.style.opacity = '0';
+                card.style.pointerEvents = 'none';
             }
         });
+        NeonplayCompat.log(`Showing ${visibleCount} games in ${tabName} category`);
     }
 
     launchExternalGame(gameUrl, gameName) {

@@ -650,12 +650,20 @@ section {
     cursor: pointer;
     font-size: 0.95rem;
     transform: translateY(100%);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     text-transform: uppercase;
+    z-index: 100;
+    box-shadow: 0 -5px 20px rgba(0, 240, 255, 0.3);
 }
 
 .game-card:hover .play-btn {
     transform: translateY(0);
+    box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.6);
+}
+
+.play-btn:hover {
+    background: linear-gradient(135deg, var(--secondary-neon), var(--tertiary-neon));
+    transform: translateY(-2px);
 }
 
 .play-btn:active {
