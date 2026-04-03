@@ -341,15 +341,22 @@ class NeonplayApp {
                         <iframe 
                             src="${gameUrl}" 
                             allow="fullscreen; accelerometer; gyroscope; microphone; camera"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-presentation"
-                            style="background: white;">
+                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-presentation">
                         </iframe>
                     </div>
                 </div>
             `;
             
-            modal.classList.add('active');
-            modal.style.display = 'flex';
+            // Clear any inline styles and remove class first
+            modal.classList.remove('active');
+            modal.style.display = '';
+            modal.style.opacity = '';
+            modal.style.pointerEvents = '';
+            
+            // Then add active class to trigger display
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
             
             // Add particle effects
             if (this.particles) {
@@ -442,8 +449,16 @@ class NeonplayApp {
             }
 
             container.innerHTML = gameContent;
-            modal.classList.add('active');
-            modal.style.display = 'flex';
+            
+            // Clear any inline styles and remove class first
+            modal.classList.remove('active');
+            modal.style.display = '';
+            modal.style.opacity = '';
+            
+            // Then add active class to trigger display via CSS
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
             
             // Initialize game
             this.initializeGame(gameName, container);
@@ -463,9 +478,10 @@ class NeonplayApp {
         try {
             const modal = document.getElementById('gameModal');
             modal.classList.remove('active');
-            modal.style.display = 'none';
-            document.getElementById('gameContainer').innerHTML = '';
-            this.currentGame = null;
+            setTimeout(() => {
+                document.getElementById('gameContainer').innerHTML = '';
+                this.currentGame = null;
+            }, 300);
             NeonplayCompat.log('Game closed');
         } catch (error) {
             NeonplayCompat.log(`ERROR closing game: ${error.message}`);

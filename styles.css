@@ -804,7 +804,7 @@ section {
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(5px);
     z-index: 2000;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -813,6 +813,7 @@ section {
 }
 
 .game-modal.active {
+    display: flex !important;
     opacity: 1;
     pointer-events: all;
 }
@@ -820,14 +821,16 @@ section {
 .modal-content {
     position: relative;
     width: 90%;
-    max-width: 900px;
+    max-width: 1200px;
     height: 90vh;
-    background: linear-gradient(135deg, rgba(10, 10, 10, 1) 0%, rgba(40, 10, 20, 0.8) 100%);
+    background: #ffffff;
     border: 3px solid var(--primary-neon);
     border-radius: 15px;
     box-shadow: 0 0 50px var(--primary-neon), inset 0 0 30px rgba(0, 240, 255, 0.1);
     overflow: hidden;
     animation: modalZoomIn 0.4s ease-out;
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes modalZoomIn {
@@ -866,7 +869,10 @@ section {
 .modal-game-container {
     width: 100%;
     height: 100%;
-    overflow-y: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
 }
 
 .external-game-wrapper {
