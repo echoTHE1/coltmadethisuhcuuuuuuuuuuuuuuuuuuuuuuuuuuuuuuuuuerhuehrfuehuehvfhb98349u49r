@@ -332,19 +332,15 @@ class NeonplayApp {
                 return;
             }
 
+            // Clean simple iframe setup
             container.innerHTML = `
-                <div class="external-game-wrapper">
-                    <div class="game-header">
-                        <h3>🎮 ${gameName}</h3>
-                    </div>
-                    <div class="external-game-frame">
-                        <iframe 
-                            src="${gameUrl}" 
-                            allow="fullscreen; accelerometer; gyroscope; microphone; camera"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-presentation">
-                        </iframe>
-                    </div>
-                </div>
+                <iframe 
+                    id="gameFrame"
+                    src="${gameUrl}" 
+                    style="width: 100%; height: 100%; border: none; display: block;"
+                    allow="fullscreen; accelerometer; autoplay; camera; encrypted-media; gyroscope; microphone"
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals">
+                </iframe>
             `;
             
             // Clear any inline styles and remove class first
@@ -356,14 +352,14 @@ class NeonplayApp {
             // Then add active class to trigger display
             setTimeout(() => {
                 modal.classList.add('active');
-            }, 10);
+            }, 50);
             
             // Add particle effects
             if (this.particles) {
                 this.particles.addParticles(window.innerWidth / 2, window.innerHeight / 2, 10);
             }
             
-            NeonplayCompat.log('Game modal activated successfully');
+            NeonplayCompat.log('Game modal activated');
         } catch (error) {
             NeonplayCompat.log(`ERROR launching game: ${error.message}`);
         }
