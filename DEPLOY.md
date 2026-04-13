@@ -19,7 +19,7 @@ git push
 ### Step 3: Wait & Access (2 min)
 Wait ~1-2 minutes, then visit:
 ```
-https://YOUR_USERNAME.github.io/neonplay
+https://echoTHE1.github.io/neonplay
 ```
 
 ✅ **Done!** Your site is live and unblocked!
